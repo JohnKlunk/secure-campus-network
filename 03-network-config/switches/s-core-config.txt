@@ -1,0 +1,32 @@
+# S-CORE Switch Configuration
+# Zentrale VLAN-Verteilung und Trunk-Switch
+
+hostname S-CORE
+no ip domain-lookup
+
+!
+! VLANs
+vlan 10
+ name ADMIN
+vlan 20
+ name TEACHER
+vlan 30
+ name STUDENT
+vlan 40
+ name SERVER
+!
+
+! Management Interface
+interface Vlan40
+ ip address 10.40.40.100 255.255.255.0
+ no shutdown
+!
+
+! Trunks zu Router und Access-Switches
+interface range FastEthernet0/1 - 5
+ switchport mode trunk
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,30,40
+!
+
+end
