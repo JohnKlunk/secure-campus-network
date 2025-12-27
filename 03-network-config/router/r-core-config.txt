@@ -1,0 +1,43 @@
+# R-CORE Router Configuration
+# Projekt: Secure Campus Network
+# Zweck: Inter-VLAN Routing, DHCP Relay, ACL Enforcement
+
+hostname R-CORE
+no ip domain-lookup
+
+!
+! Interface zum Core Switch
+interface GigabitEthernet0/1
+ no shutdown
+!
+
+! VLAN 10 - Admin
+interface GigabitEthernet0/1.10
+ encapsulation dot1Q 10
+ ip address 10.10.10.1 255.255.255.0
+ ip helper-address 10.40.40.10
+!
+
+! VLAN 20 - Teacher
+interface GigabitEthernet0/1.20
+ encapsulation dot1Q 20
+ ip address 10.20.20.1 255.255.255.0
+ ip helper-address 10.40.40.10
+!
+
+! VLAN 30 - Student
+interface GigabitEthernet0/1.30
+ encapsulation dot1Q 30
+ ip address 10.30.30.1 255.255.255.0
+ ip helper-address 10.40.40.10
+ ip access-group STUDENT_VLAN30 in
+!
+
+! VLAN 40 - Server
+interface GigabitEthernet0/1.40
+ encapsulation dot1Q 40
+ ip address 10.40.40.1 255.255.255.0
+ ip access-group SERVER_PROTECT in
+!
+
+end
