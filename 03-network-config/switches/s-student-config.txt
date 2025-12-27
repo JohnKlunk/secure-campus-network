@@ -1,0 +1,21 @@
+# S-STUDENT Switch Configuration
+
+hostname S-STUDENT
+no ip domain-lookup
+
+vlan 30
+ name STUDENT
+
+! Uplink zum Core
+interface FastEthernet0/1
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30,40
+!
+
+! Student Endgeräte
+interface range FastEthernet0/2 - 24
+ switchport mode access
+ switchport access vlan 30
+!
+
+end
