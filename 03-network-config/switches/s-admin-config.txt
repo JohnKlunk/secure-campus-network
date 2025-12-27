@@ -1,0 +1,21 @@
+# S-ADMIN Switch Configuration
+
+hostname S-ADMIN
+no ip domain-lookup
+
+vlan 10
+ name ADMIN
+
+! Uplink zum Core
+interface FastEthernet0/1
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30,40
+!
+
+! Admin Endgeräte
+interface range FastEthernet0/2 - 24
+ switchport mode access
+ switchport access vlan 10
+!
+
+end
