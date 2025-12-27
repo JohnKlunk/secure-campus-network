@@ -24,7 +24,7 @@ Der interne Webserver (10.40.40.20) soll:
 
 ## ACL-Konfiguration (Router R-CORE)
 
-### Variante A (empfohlen): Admin + Teacher dürfen HTTP/HTTPS, Students nur HTTP
+### Admin + Teacher dürfen HTTP/HTTPS, Students nur HTTP
 ```bash
 ip access-list extended SERVER_PROTECT
  remark --- Allow Web from Admin + Teacher ---
